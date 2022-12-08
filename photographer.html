@@ -1,38 +1,106 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link href="css/photographer.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/c7d3dcb5af.js" crossorigin="anonymous"></script>
     <title>Fisheye - photographe </title>
   </head>
   <body>
-    <header>
-      <img src="assets/images/logo.png" class="logo" />
+    <header class="header-logo">
+      <a href="./index.html">
+        <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page">
+      </a>
     </header>
     <main id="main">
       <div class="photograph-header">
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+        <button class="contact_button" aria-label="contact me">Contactez-moi</button>
+      </div>
+      <div class="filter-wrapper">
+        <form class="filter-form" action="#" method="post" aria-labelledby="filter-select">
+          <label for="filter-select">triér par</label>
+          <div name="filter-select" id="filter-select">
+            <div class="filter-btn contact_button" role="button" aria-haspopup="listbox">
+              <span class="selected"></span>
+              <span class="chevron">
+                <em class="fa-solid fa-chevron-down"></em>
+              </span>
+            </div>
+            <div class="filter-container hide" role="listbox" aria-labelledby="filter-item" aria-activedescendant aria-selected aria-expanded="false">
+              <a id="item-popularite" href="#" class="filter-item" role="option" data-value="popularité" style="display: none;">Popularité</a>
+              <a id="item-date" href="#" class="filter-item" role="option" data-value="date">Date</a>
+              <a id="item-titre" href="#" class="filter-item" role="option" data-value="titre">Titre</a>
+            </div>
+          </div>
+        </form>
+      </div>
+      
+      <div class="photograph-body">
+      </div>
+      <div id="lightbox" role="dialog" aria-label="image closeup view">
+        <div class="container">
+          <div role="button" class="controls controls-left">
+            <!-- <span class="img prev-image">
+                <img src="assets/icons/prev-icon.svg" alt="previous">
+            </span> -->
+            <p class="sr-only">Previous</p>
+          </div>
+          <div class="carousel">
+            <!-- le template de l'image change selon la photo -->
+          </div>
+          <div role="button" class="controls controls-right">
+            <!-- <span class="img next-image">
+                <img src="assets/icons/next-icon.svg" alt="next">
+            </span> -->
+            <p class="sr-only">Next</p>
+          </div>
+          <div role="button" class="controls controls-close">
+            <!-- <span class="img close-image">
+              <img class="close" src="assets/icons/close-lightbox.svg" alt="lilac breasted roller"/>
+            </span> -->
+            <p class="sr-only">Close</p>
+          </div>
+        </div>
       </div>
     </main>
     <div id="contact_modal">
-			<div class="modal">
+			<div class="modal" role="dialog" aria-labelledby="modalTitle">
 				<header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <div class="modal-header">
+            <h2>Contactez-moi</h2>
+            <h3 id="modalTitle"></h3>
+          </div>
+          <img class="close" src="assets/icons/close.svg" alt="close contact form"/>
         </header>
-				<form>
-					<div>
-						<label>Prénom</label>
-						<input />
+				<form name="contact"
+        action="photographer.html"
+        method="get"
+        onsubmit="return validateModal();">
+					<div class="form-input">
+						<label for="first">Prénom</label>
+						<input type="text" id="first" name="modal-input"/>
+            <label for="last">Nom</label>
+						<input type="text" id="last" name="modal-input"/>
+            <label for="email">Email</label>
+						<input type="email" id="email" name="modal-input"/>
+            <label for="message">Votre message</label>
+            <textarea name="modal-input" id="message" cols="40" required></textarea>
 					</div>
-          <button class="contact_button">Envoyer</button>
+          <button class="contact_button" aria-label="send">Envoyer</button>
 				</form>
 			</div>
 		</div>
-    <script src="/scripts/factories/photographer.js"></script>
-    <script src="/scripts/pages/photographer.js"></script>
-    <script src="/scripts/utils/contactForm.js"></script>
+
+    <!-- <script src="./scripts/utils/contactForm.js"></script> -->
+    <script src="./scripts/factories/photographer.js"></script>
+    <!-- <script src="./scripts/factories/media.js"></script> -->
+    <script src="./scripts/modals/Photographer.js"></script>
+    <!-- <script src="./scripts/modals/Media.js"></script> -->
+    <script src="./scripts/pages/photographer.js"></script>
   </body>
 </html>
