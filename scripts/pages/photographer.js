@@ -23,9 +23,41 @@ async function getPhotographers() {
     .catch(function(err){
     })
     // et bien retourner le tableau photographers seulement une fois
-}    
+}
+
+async function getMedias(){
+    fetch('./data/photographers.json')
+    .then(function(res){
+        if(res.ok){
+            return res.json()
+        }
+    })
+    .then(function(data){
+        const medias = data.media;
+        const mediaSection = document.querySelector(".photograph-body");
+        const Params = (new URL(document.location).searchParams);
+        const Id = Number(Params.get("id"));
+        medias.forEach((media) => {
+            if(media.photographerId === Id){
+                if(media.hasOwnProperty('image')){
+                    medias.map(media => new MediaFactory(media, 'img'))
+                    const mediaModel = mediasFactory(media);
+                    const userCardDOM = mediaModel.imgTemplate(); 
+                    mediaSection.append(userCardDOM);
+                }else if(media.hasOwnProperty('video')){
+                    medias.map(media => new MediaFactory(media, 'video'))
+                    const mediaModel = mediasFactory(media);
+                    const userCardDOM = mediaModel.videoTemplate();
+                    mediaSection.append(userCardDOM);
+                }
+            }   
+        });
+    })
+}
+
 async function init() {
     // Récupère les datas des photographes
     await getPhotographers();
+    const medias = await getMedias();
 };
 init();
