@@ -136,7 +136,8 @@ function mediasFactory(data){
         heart.append(i);
         caption.append(p);
         caption.append(heart);
-        a.setAttribute("href", "#");
+        a.setAttribute("href", vid._videopath);
+        a.setAttribute("aria-label", "link");
         a.appendChild(video);
         figure.append(a);
         figure.append(caption);

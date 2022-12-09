@@ -39,17 +39,17 @@ async function getMedias(){
         const Id = Number(Params.get("id"));
         medias.forEach((media) => {
             if(media.photographerId === Id){
+                let userCardDOM;
                 if(media.hasOwnProperty('image')){
                     medias.map(media => new MediaFactory(media, 'img'))
                     const mediaModel = mediasFactory(media);
-                    const userCardDOM = mediaModel.imgTemplate(); 
-                    mediaSection.append(userCardDOM);
+                    userCardDOM = mediaModel.imgTemplate();
                 }else if(media.hasOwnProperty('video')){
                     medias.map(media => new MediaFactory(media, 'video'))
                     const mediaModel = mediasFactory(media);
-                    const userCardDOM = mediaModel.videoTemplate();
-                    mediaSection.append(userCardDOM);
+                    userCardDOM = mediaModel.videoTemplate(); 
                 }
+                mediaSection.append(userCardDOM);
             }   
         });
     })
@@ -58,6 +58,6 @@ async function getMedias(){
 async function init() {
     // Récupère les datas des photographes
     await getPhotographers();
-    const medias = await getMedias();
+    await getMedias();
 };
 init();
