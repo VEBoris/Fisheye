@@ -1,30 +1,30 @@
 class Media{
     constructor(data){
-        this._id = data.id
-        this._photographerId = data.photographerId
-        this._title = data.title
-        this._likes = data.likes
-        this._date = data.date
-        this._price = data.price
+        this._id = data.id;
+        this._photographerId = data.photographerId;
+        this._title = data.title;
+        this._likes = data.likes;
+        this._date = data.date;
+        this._price = data.price;
     }
 
     get id(){
-        return this._id
+        return this._id;
     }
     get photographerId(){
-        return this._photographerId
+        return this._photographerId;
     }
     get title() {
-        return this._title
+        return this._title;
     }
     get likes(){
-        return this._likes
+        return this._likes;
     }
     get date(){
-        return this._date
+        return this._date;
     }
     get price(){
-        return this._price
+        return this._price;
     }
 }
 
@@ -112,4 +112,59 @@ class Lightbox extends Media{
         carousel.innerHTML = videoTemplate;
         return carousel;
     }
+}
+
+function filterTitle(media){ 
+    arr.push(media);
+    console.log(arr)
+    function SortArray(x, y){
+        if (x.title > y.title) {
+            return 1;
+        }
+    }
+    let filteredByTitle = arr.sort(SortArray);
+    filteredByTitle.forEach(filter => {
+        const model = mediasFactory(filter);
+        let filteredDom;
+        if(filter.hasOwnProperty('image')){
+            filteredDom = model.imgTemplate();
+
+        }else if(filter.hasOwnProperty('video')){
+            filteredDom = model.videoTemplate();    
+        }
+        return filteredDom;
+    })
+}
+
+function filterLikes(media){
+    arr.push(media);
+    let filteredByLikes = arr.sort((a, b) => (a.likes < b.likes) ? 1 : -1);
+    console.log(filteredByDate)
+    filteredByLikes.forEach(filter => {
+        const model = mediasFactory(filter);
+        let filteredDom;
+        if(filter.hasOwnProperty('image')){
+            filteredDom = model.imgTemplate();
+
+        }else if(filter.hasOwnProperty('video')){
+            filteredDom = model.videoTemplate();    
+        }
+        return filteredDom;
+    })
+}
+
+function filterDate(media){
+    arr.push(media);
+    let filteredByDate = arr.sort((a, b) => (a.date < b.date) ? 1 : -1);
+    filteredByDate.forEach(filter => {
+        const model = mediasFactory(filter);
+        let filteredDom;
+        if(filter.hasOwnProperty('image')){
+            filteredDom = model.imgTemplate();
+
+        }else if(filter.hasOwnProperty('video')){
+            filteredDom = model.videoTemplate();    
+        }
+        return filteredDom;
+    });
 }
