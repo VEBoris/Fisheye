@@ -37,19 +37,29 @@ async function getMedias(){
         const mediaSection = document.querySelector(".photograph-body");
         const Params = (new URL(document.location).searchParams);
         const Id = Number(Params.get("id"));
+
+        let sum = 0;
+
         medias.forEach((media) => {
             if(media.photographerId === Id){
-                let userCardDOM;
+                sum += media.likes;
+                const likesBlock = document.querySelector(".photograph-likes");
+                const icon = document.createElement('i');
+                icon.classList.add('tot-likes-icon' ,'fa-solid', 'fa-heart');
+                likesBlock.textContent = sum + " ";
+                likesBlock.append(icon);
+                // function nextLightbox(){
+                //     console.log(media);
+                // }
+                // next.addEventListener("click", nextLightbox);
+                const mediaModel = mediasFactory(media);
+                let mediaCardDOM;
                 if(media.hasOwnProperty('image')){
-                    medias.map(media => new MediaFactory(media, 'img'))
-                    const mediaModel = mediasFactory(media);
-                    userCardDOM = mediaModel.imgTemplate();
+                    mediaCardDOM = mediaModel.imgTemplate();
                 }else if(media.hasOwnProperty('video')){
-                    medias.map(media => new MediaFactory(media, 'video'))
-                    const mediaModel = mediasFactory(media);
-                    userCardDOM = mediaModel.videoTemplate(); 
+                    mediaCardDOM = mediaModel.videoTemplate();
                 }
-                mediaSection.append(userCardDOM);
+                mediaSection.append(mediaCardDOM);
             }   
         });
     })
