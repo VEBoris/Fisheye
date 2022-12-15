@@ -44,10 +44,7 @@ async function getMedias(){
             if(media.photographerId === Id){
                 sum += media.likes;
                 const likesBlock = document.querySelector(".photograph-likes");
-                const icon = document.createElement('i');
-                icon.classList.add('tot-likes-icon' ,'fa-solid', 'fa-heart');
-                likesBlock.textContent = sum + " ";
-                likesBlock.append(icon);
+                likesBlock.textContent = sum;
                 // function nextLightbox(){
                 //     console.log(media);
                 // }
