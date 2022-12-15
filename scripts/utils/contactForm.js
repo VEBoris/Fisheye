@@ -3,7 +3,6 @@ const body = document.querySelector('body');
 const openForm = document.querySelector('.contact_button');
 const modal = document.querySelector("#contact_modal");
 const lightbox = document.querySelector("#lightbox");
-const next = document.querySelector(".controls-right");
 const main = document.querySelector("#main");
 
 function displayModal() {
@@ -19,7 +18,7 @@ function closeModal() {
 }
 
 const filter = document.querySelector('#filter-select');
-const options = document.querySelector('#filter-container');
+const options = document.querySelector('.filter-container');
 
 filter.addEventListener("click", function(e){
     e.preventDefault();

@@ -10,16 +10,20 @@ class MediaFactory {
     }
  }
 
+ let arr = [];
  function mediasFactory(data){
     const media = new Media(data);
+    const lightbox = new Lightbox(data);
     const body = document.querySelector('.photograph-body');
     const figure = document.createElement('div');
     figure.classList.add('card');
     const a = document.createElement('a');
+    a.classList.add('media-link');
     const caption = document.createElement('div');
     caption.classList.add('caption');
     const p = document.createElement('p');
     const likes = document.createElement('p');
+    likes.classList.add('counter');
     likes.textContent = media._likes;
     const i = document.createElement('i');
     i.classList.add('fa-regular', 'fa-heart');
@@ -53,7 +57,7 @@ class MediaFactory {
         if (i.className == "fa-regular fa-heart"){
             return increment();
         }
-        if(i.className == "fa-solid fa-heart"){
+        else{
             return decrement();
         }
     });
@@ -67,8 +71,10 @@ class MediaFactory {
         img.classList.add('thumbnail');
         img.setAttribute("src", picture._imagepath);
         img.setAttribute("alt", picture._title);
-        a.classList.add('media-link');
-        a.setAttribute("href", picture._imagepath);
+        a.addEventListener('click', function(e){
+            e.preventDefault();
+            lightbox.createImgLightbox();
+        })
         a.appendChild(img);  
         figure.append(img);
         figure.append(caption);
@@ -88,9 +94,12 @@ class MediaFactory {
         p.textContent = vid._title;
         caption.append(p);
         caption.append(heart);
-        a.classList.add('media-link');
         a.setAttribute("href", vid._videopath);
         a.setAttribute("aria-label", "link");
+        a.addEventListener('click', function(e){
+            e.preventDefault();
+            lightbox.createVidLightbox();
+        })
         a.appendChild(video);
         figure.append(a);
         figure.append(caption);
