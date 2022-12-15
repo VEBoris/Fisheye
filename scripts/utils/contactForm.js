@@ -1,30 +1,41 @@
-const closeForm = document.querySelector(".close");
+const closeForm = document.querySelectorAll(".close");
+const body = document.querySelector('body');
 const openForm = document.querySelector('.contact_button');
 const modal = document.querySelector("#contact_modal");
+const lightbox = document.querySelector("#lightbox");
+const next = document.querySelector(".controls-right");
 const main = document.querySelector("#main");
 
 function displayModal() {
     modal.setAttribute("aria-hidden", "false");
     modal.setAttribute("role", "dialog");
-	modal.style.display = "block";
+    modal.style.display = "flex";
 }
 
 function closeModal() {
     modal.setAttribute("aria-hidden", "true");
     modal.style.display = "none";
+    lightbox.style.display = "none";
 }
+
+const filter = document.querySelector('#filter-select');
+const options = document.querySelector('#filter-container');
+
+filter.addEventListener("click", function(e){
+    e.preventDefault();
+    if(options.classList.contains('hide')){
+        options.classList.remove('hide');
+    }else{
+        options.classList.add('hide');
+    }
+})
 
 openForm.addEventListener('click', displayModal);
 
-closeForm.addEventListener('click', closeModal);
+closeForm.forEach((close) => close.addEventListener('click', closeModal));
 
-main.addEventListener('keydown', function(e){
-    if (e.keyCode === 27){
-        closeModal();
-    }
-})
-modal.addEventListener('keydown', function(e){
-    if (e.keyCode === 27){
+body.addEventListener('keydown', function(e){
+    if (e.key === "Escape"){
         closeModal();
     }
 })
