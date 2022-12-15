@@ -61,4 +61,55 @@ class Video extends Media{
     get path(){
         return this._videopath
     }
-} 
+}
+
+
+const container = document.querySelector('#lightbox');
+const carousel = document.querySelector('.carousel');
+
+class Lightbox extends Media{
+    constructor(data){
+        super(data)
+        this._image = data.image
+        this._video = data.video
+        this._imgpath = `./assets/photographers/thumbnails/${this._image}`
+        this._vidpath = `./assets/photographers/thumbnails/${this._video}`
+    }
+    get image(){
+        return this._image;
+    }
+    get imgpath(){
+        return this._imgpath;
+    }
+    get video(){
+        return this._video;
+    }
+    get vidpath(){
+        return this._vidpath;
+    }
+    createImgLightbox(){
+
+        const imageTemplate =
+        `
+        <img id="current_img" data-id="${this._id}" src=${this._imgpath} alt="${this._title}">
+        <p class="caption">${this._title}</p>
+            
+        `;
+        container.style.display = 'flex';
+        carousel.innerHTML = imageTemplate;
+        return carousel;
+    }
+    createVidLightbox(){
+
+        const videoTemplate = 
+        `
+        <video id="current_img" data-id="${this._id}" controls>
+            <source src="${this._vidpath}" type="video/mp4">
+        </video>
+        <p class="caption">${this._title}</p>
+        `;
+        container.style.display = 'flex';
+        carousel.innerHTML = videoTemplate;
+        return carousel;
+    }
+}
