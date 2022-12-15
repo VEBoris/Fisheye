@@ -21,7 +21,7 @@ function photographerFactory(data) {
         slogan.textContent = photographer.tagline;
         const photographerPrice = document.createElement('div');
         photographerPrice.classList.add('price');
-        photographerPrice.textContent = photographer.price + "€/Jour";
+        photographerPrice.textContent = photographer.price + '€/Jour';
         link.appendChild(img);
         link.appendChild(h2);
         article.append(link);

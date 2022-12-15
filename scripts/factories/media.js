@@ -1,16 +1,15 @@
 class MediaFactory {
     constructor(data, type) {
         if (type === 'img') {
-            return new Picture(data)
+            return new Picture(data);
         } else if (type === 'video') {
-            return new Video(data)
+            return new Video(data);
         } else {
             throw 'Unknown type format'
         }
     }
  }
 
- let arr = [];
  function mediasFactory(data){
     const media = new Media(data);
     const lightbox = new Lightbox(data);
@@ -26,6 +25,7 @@ class MediaFactory {
     likes.classList.add('counter');
     likes.textContent = media._likes;
     const i = document.createElement('i');
+    likes.setAttribute('aria-label', 'likes');
     i.classList.add('fa-regular', 'fa-heart');
     const heart = document.createElement('span');
     heart.classList.add('heart');
@@ -34,7 +34,6 @@ class MediaFactory {
     const totLikes = document.querySelector('.photograph-likes');
     const icon = document.createElement('i');
     icon.classList.add('tot-likes-icon' ,'fa-solid', 'fa-heart');
-    totLikes.append(icon);
 
     function increment(){
         likes.textContent++;
@@ -78,8 +77,8 @@ class MediaFactory {
         a.appendChild(img);  
         figure.append(img);
         figure.append(caption);
-        body.append(figure);
-        return(figure);
+        body.append(figure); 
+        return figure;
     }
 
     function videoTemplate() {
@@ -89,7 +88,6 @@ class MediaFactory {
         source.setAttribute("src", vid._videopath);
         source.setAttribute("type", "video/mp4");
         video.classList.add('thumbnail');
-        video.controls = true;
         video.appendChild(source);
         p.textContent = vid._title;
         caption.append(p);
@@ -104,7 +102,27 @@ class MediaFactory {
         figure.append(a);
         figure.append(caption);
         body.append(figure);
-        return(figure);
+        return figure;
     }
 return { imgTemplate, videoTemplate }
+}
+
+function clearDOM() {
+    let body = document.querySelector('.photograph-body');
+    body.innerHTML = "";
+}
+
+function filterTitle(media){
+    arr.push(media);
+    function SortArray(x, y){
+        if (x.title < y.title) {
+            return -1;
+        }
+        if (x.title > y.title) {
+            return 1;
+        }
+        return 0;
+    }
+    let filteredByTitle = arr.sort(SortArray);
+    return filteredByTitle;
 }

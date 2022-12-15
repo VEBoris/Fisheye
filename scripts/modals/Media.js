@@ -114,6 +114,7 @@ class Lightbox extends Media{
     }
 }
 
+let arr = [];
 function filterTitle(media){ 
     arr.push(media);
     console.log(arr)
