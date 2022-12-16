@@ -7,7 +7,6 @@ class Media{
         this._date = data.date;
         this._price = data.price;
     }
-
     get id(){
         return this._id;
     }
@@ -25,55 +24,53 @@ class Media{
     }
     get price(){
         return this._price;
-    }
+    }    
 }
-
 class Picture extends Media{
     constructor(data){
-        super(data)
-        this._type = 'img'
-        this._image = data.image
-        this._imagepath = `./assets/photographers/thumbnails/${this._image}`
+        super(data);
+        this._type = 'img';
+        this._image = data.image;
+        this._imagepath = `./assets/photographers/thumbnails/${this._image}`;
     }
     get type(){
-        return this._type
+        return this._type;
     }
     get image(){
-        return this._image
+        return this._image;
     }
     get path(){
-        return this._imagepath
+        return this._imagepath;
     }
 }
 class Video extends Media{
     constructor(data){
-        super(data)
-        this._type = 'video'
-        this._video = data.video
-        this._videopath = `./assets/photographers/thumbnails/${this._video}`
+        super(data);
+        this._type = 'video';
+        this._video = data.video;
+        this._videopath = `./assets/photographers/thumbnails/${this._video}`;
     }
     get type(){
-        return this._type
+        return this._type;
     }
     get video(){
-        return this._video
+        return this._video;
     }
     get path(){
-        return this._videopath
+        return this._videopath;
     }
-}
-
+} 
 
 const container = document.querySelector('#lightbox');
 const carousel = document.querySelector('.carousel');
 
 class Lightbox extends Media{
     constructor(data){
-        super(data)
-        this._image = data.image
-        this._video = data.video
-        this._imgpath = `./assets/photographers/thumbnails/${this._image}`
-        this._vidpath = `./assets/photographers/thumbnails/${this._video}`
+        super(data);
+        this._image = data.image;
+        this._video = data.video;
+        this._imgpath = `./assets/photographers/thumbnails/${this._image}`;
+        this._vidpath = `./assets/photographers/thumbnails/${this._video}`;
     }
     get image(){
         return this._image;
@@ -89,7 +86,7 @@ class Lightbox extends Media{
     }
     createImgLightbox(){
 
-        const imageTemplate =
+        const imageTemplate = 
         `
         <img id="current_img" data-id="${this._id}" src=${this._imgpath} alt="${this._title}">
         <p class="caption">${this._title}</p>
@@ -100,10 +97,10 @@ class Lightbox extends Media{
         return carousel;
     }
     createVidLightbox(){
-
+       
         const videoTemplate = 
         `
-        <video id="current_img" data-id="${this._id}" controls>
+        <video id="current_img" data-id="${this._id}" controls autoplay>
             <source src="${this._vidpath}" type="video/mp4">
         </video>
         <p class="caption">${this._title}</p>
@@ -112,60 +109,4 @@ class Lightbox extends Media{
         carousel.innerHTML = videoTemplate;
         return carousel;
     }
-}
-
-let arr = [];
-function filterTitle(media){ 
-    arr.push(media);
-    console.log(arr)
-    function SortArray(x, y){
-        if (x.title > y.title) {
-            return 1;
-        }
-    }
-    let filteredByTitle = arr.sort(SortArray);
-    filteredByTitle.forEach(filter => {
-        const model = mediasFactory(filter);
-        let filteredDom;
-        if(filter.hasOwnProperty('image')){
-            filteredDom = model.imgTemplate();
-
-        }else if(filter.hasOwnProperty('video')){
-            filteredDom = model.videoTemplate();    
-        }
-        return filteredDom;
-    })
-}
-
-function filterLikes(media){
-    arr.push(media);
-    let filteredByLikes = arr.sort((a, b) => (a.likes < b.likes) ? 1 : -1);
-    console.log(filteredByDate)
-    filteredByLikes.forEach(filter => {
-        const model = mediasFactory(filter);
-        let filteredDom;
-        if(filter.hasOwnProperty('image')){
-            filteredDom = model.imgTemplate();
-
-        }else if(filter.hasOwnProperty('video')){
-            filteredDom = model.videoTemplate();    
-        }
-        return filteredDom;
-    })
-}
-
-function filterDate(media){
-    arr.push(media);
-    let filteredByDate = arr.sort((a, b) => (a.date < b.date) ? 1 : -1);
-    filteredByDate.forEach(filter => {
-        const model = mediasFactory(filter);
-        let filteredDom;
-        if(filter.hasOwnProperty('image')){
-            filteredDom = model.imgTemplate();
-
-        }else if(filter.hasOwnProperty('video')){
-            filteredDom = model.videoTemplate();    
-        }
-        return filteredDom;
-    });
 }

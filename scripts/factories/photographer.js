@@ -73,6 +73,5 @@ function photographerFactory(data) {
         header.appendChild(headerContent);
         return (headerContent);
     }
-
     return { getUserCardDOM, user };
 }
