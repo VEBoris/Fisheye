@@ -2,7 +2,9 @@ const closeForm = document.querySelectorAll('.close');
 const body = document.querySelector('body');
 const openForm = document.querySelector('.contact_button');
 const modal = document.querySelector('#contact_modal');
+const photographBody = document.querySelector('.photograph-body');
 const lightbox = document.querySelector('#lightbox');
+
 const main = document.querySelector('#main');
 
 function displayModal() {
@@ -19,9 +21,9 @@ function closeModal() {
 
 const filter = document.querySelector('#filter-select');
 const options = document.querySelector('.filter-container');
-const chevron = document.querySelector('.chevron > i');
+const chevron = document.querySelector('.chevron > em');
 
-filter.addEventListener("click", function(e){
+filter.addEventListener('click', function(e){
     e.preventDefault();
     if(options.classList.contains('hide')){
         options.classList.remove('hide');
@@ -33,7 +35,9 @@ filter.addEventListener("click", function(e){
         options.style.visibility = 'none';
         chevron.style.transform = 'rotate(0)';
     }
-})
+});
+
+
 
 openForm.addEventListener('click', displayModal);
 
@@ -42,18 +46,20 @@ closeForm.forEach((close) => close.addEventListener('click', closeModal));
 body.addEventListener('keydown', function(e){
     if (e.key === 'Escape'){
         closeModal();
-    }if(e.key === 'ArrowLeft'){
+    }
+    if(e.key === 'ArrowLeft'){
         prevImage();
     }if(e.key === 'ArrowRight'){
         nextImage();
     }
-})
+});
+
 
 function checkForm(){
     const elements = document.getElementsByName('modal-input');
     const array = Array.from(elements);
     for(let element of array){
-        console.log(element.value);
+        console.log(element.id + ': ' + element.value);
     }
 }
 
