@@ -23,6 +23,7 @@ a{
     flex-wrap: wrap;
     margin: 0 100px;
     color: #901C1C;
+    justify-content: space-between;
 }
 
 .contact_button, .filter-container{
@@ -315,6 +316,12 @@ textarea{
     }
     .container{
         width: 100%;
+    }
+}
+
+@media screen and (min-width: 1700px){
+    .photograph-body{
+        justify-content: flex-start;
     }
 }
 
