@@ -83,13 +83,13 @@
         onsubmit="return validateModal();">
 					<div class="form-input">
 						<label for="first">Prénom</label>
-						<input type="text" id="first" name="modal-input"/>
+						<input type="text" id="first" name="modal-input" required minlength="2" pattern="[a-zA-Z-àâçéèêëîïôûùüÿñæœ']{2,}$"/>
             <label for="last">Nom</label>
-						<input type="text" id="last" name="modal-input"/>
+						<input type="text" id="last" name="modal-input" required minlength="2" pattern="[a-zA-Z-àâçéèêëîïôûùüÿñæœ']{2,}$"/>
             <label for="email">Email</label>
-						<input type="email" id="email" name="modal-input"/>
+						<input type="email" id="email" name="modal-input" required minlength="2" pattern="[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$"/>
             <label for="message">Votre message</label>
-            <textarea name="modal-input" id="message" cols="40" required></textarea>
+            <textarea name="modal-input" id="message" cols="40" required minlength="2"></textarea>
 					</div>
           <button class="contact_button" aria-label="send">Envoyer</button>
 				</form>
