@@ -64,6 +64,7 @@ function mediasFactory(data){
         const picture = new MediaFactory(data, 'img');
         const img = document.createElement('img');
         p.textContent = picture._title;
+        img.setAttribute('tabindex', '0');
         caption.append(p);
         caption.append(heart);
         img.classList.add('thumbnail');
