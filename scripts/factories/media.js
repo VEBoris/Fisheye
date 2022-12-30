@@ -84,6 +84,7 @@ function mediasFactory(data){
         const vid = new MediaFactory(data, 'video');
         const video = document.createElement('video');
         const source = document.createElement('source');
+        video.setAttribute('tabindex', '0');
         source.setAttribute('src', vid._videopath);
         source.setAttribute('type', 'video/mp4');
         video.classList.add('thumbnail');
