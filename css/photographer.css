@@ -49,6 +49,12 @@ a{
     padding: 30px;
 }
 
+.close {
+    position: fixed;
+    top: 2em;
+    right: 6em;
+}
+
 .modal header {
     justify-content: space-between;
     width: 100%;
