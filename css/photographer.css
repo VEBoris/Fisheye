@@ -49,7 +49,7 @@ a{
     padding: 30px;
 }
 
-.close {
+.close_lightbox {
     position: fixed;
     top: 2em;
     right: 6em;
