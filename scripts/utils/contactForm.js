@@ -37,6 +37,20 @@ filter.addEventListener('click', function(e){
     }
 });
 
+filter.addEventListener('keypress', function(e){
+    e.preventDefault();
+    if(options.classList.contains('hide')){
+        options.classList.remove('hide');
+        options.setAttribute('aria-expanded', true);
+        chevron.style.transform = 'rotate(180deg)';
+    }else{
+        options.classList.add('hide');
+        options.setAttribute('aria-expanded', false);
+        options.style.visibility = 'none';
+        chevron.style.transform = 'rotate(0)';
+    }
+});
+
 
 
 openForm.addEventListener('click', displayModal);

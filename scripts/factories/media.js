@@ -31,16 +31,17 @@ function mediasFactory(data){
     heart.classList.add('heart');
     heart.append(likes);
     heart.append(i);
+    heart.setAttribute('tabindex', '0');
     const totLikes = document.querySelector('.photograph-likes');
     const icon = document.createElement('i');
-    icon.classList.add('tot-likes-icon' ,'fa-solid', 'fa-heart');
+    icon.classList.add('tot-likes-icon' ,'fa-solid', 'fa-heart'); 
     
     function increment(){
         likes.textContent++;
         totLikes.textContent++;
         totLikes.append(icon);
         i.classList.remove('fa-regular', 'fa-heart');
-        i.classList.add('fa-solid', 'fa-heart');
+        i.classList.add('fa-solid', 'fa-heart');        
     }
     function decrement(){
         likes.textContent--;
@@ -59,6 +60,18 @@ function mediasFactory(data){
             return decrement();
         }
     });
+
+    heart.addEventListener('keypress', function(e){
+        e.preventDefault();
+        if (i.className == 'fa-regular fa-heart'){
+            return increment();
+            
+        }
+        else{
+            return decrement();
+        }
+    });
+
 
     function imgTemplate() {
         const picture = new MediaFactory(data, 'img');

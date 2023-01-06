@@ -8,8 +8,10 @@ const mediaSection = document.querySelector('.photograph-body');
 
 for(let item of filterItem){
     item.addEventListener('click', filterAction, false);
+    item.addEventListener('keypress', filterAction, false);
 }
 function filterAction(e){
+    console.log("test filtre")
     let name = e.target.innerText;
     filterItem.forEach(filter => {
         filter.style.display = 'block';
